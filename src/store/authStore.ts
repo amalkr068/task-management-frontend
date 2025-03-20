@@ -1,40 +1,28 @@
 import { create } from "zustand";
-import { login, logout, fetchUserProfile } from "../api/auth";
 
 interface AuthState {
   user: any | null;
   isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => Promise<void>;
-  fetchUser: () => Promise<void>;
+  setUser: (user: any) => void;
+  logout: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  isAuthenticated: false,
+// Load user data from localStorage when the app starts
+const storedUser = localStorage.getItem("user");
 
-  // Login function
-  login: async (email, password) => {
-    const user = await login(email, password);
+export const useAuthStore = create<AuthState>((set) => ({
+  user: storedUser ? JSON.parse(storedUser) : null,
+  isAuthenticated: !!storedUser,
+
+  // Update Zustand state and store in localStorage
+  setUser: (user) => {
+    localStorage.setItem("user", JSON.stringify(user));
     set({ user, isAuthenticated: true });
   },
 
-  // Logout function
-  logout: async () => {
-    await logout();
+  // Clear Zustand state and remove from localStorage
+  logout: () => {
+    localStorage.removeItem("user");
     set({ user: null, isAuthenticated: false });
-  },
-
-  // Fetch user details (MySQL)
-  fetchUser: async () => {
-    try {
-      const response = await fetchUserProfile();
-      set({ user: response, isAuthenticated: true });
-    } catch (error: any) {
-      if (error.message.includes("No authentication token")) {
-        console.warn("User is not logged in, redirecting to login.");
-        set({ user: null, isAuthenticated: false });
-      }
-    }
   },
 }));
