@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("http://localhost:5000/tasks/all", {
+        const response = await fetch("/api/tasks/all", {
           credentials: "include",
         });
 
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:5000/tasks/users", {
+        const response = await fetch("/api/tasks/users", {
           credentials: "include",
         });
 
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
 
   const handleAssignTask = async (taskId: string, userId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/tasks/${taskId}/assign`, {
+      const response = await fetch(`/api/tasks/${taskId}/assign`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

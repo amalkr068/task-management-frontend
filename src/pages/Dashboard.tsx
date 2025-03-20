@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useAuthStore } from "../store/authStore";
 import Navbar from "../components/Navbar";
 import TaskItem from "../components/TaskItem";
-import { useDrag, useDrop, DndProvider } from "react-dnd";
+import {  DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 const Dashboard = () => {
@@ -15,7 +15,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("http://localhost:5000/tasks", { credentials: "include" });
+        const response = await fetch("/api/tasks", { credentials: "include" });
 
         if (!response.ok) throw new Error("Failed to fetch tasks");
 
@@ -34,7 +34,7 @@ const Dashboard = () => {
   const handleCreateTask = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/tasks", {
+      const response = await fetch("/api/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -54,7 +54,7 @@ const Dashboard = () => {
 
   const handleDeleteTask = async (taskId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/tasks/${taskId}`, {
+      const response = await fetch(`/api/tasks/${taskId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -70,7 +70,7 @@ const Dashboard = () => {
 
   const updateTaskOrder = async (updatedTasks: any[]) => {
     try {
-      await fetch("http://localhost:5000/tasks/reorder", {
+      await fetch("/api/tasks/reorder", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -92,7 +92,7 @@ const Dashboard = () => {
 
   const handleStatusChange = async (taskId: string, status: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/tasks/${taskId}/status`, {
+      const response = await fetch(`/api/tasks/${taskId}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

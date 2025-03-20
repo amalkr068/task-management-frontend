@@ -54,3 +54,32 @@ export default tseslint.config({
 ```
 
 
+#  Task Management & Reporting Dashboard (Frontend)
+
+##  Overview  
+This is the **React frontend** for a **Task Management System**, featuring authentication, task tracking, and an admin dashboard for managing tasks and generating reports.  
+
+###  Features  
+✔ **User Authentication** (JWT-based login & protected routes)  
+✔ **Task Management** (Create, Update, Delete, Drag & Drop support)  
+✔ **Admin Dashboard** (Task assignment, status tracking, and analytics)  
+✔ **API Integration** (Fetch & React Query for data fetching)  
+✔ **State Management** using Zustand  
+✔ **Modern Styling** with TailwindCSS  
+
+---
+
+##  Tech Stack  
+- **Frontend:** React (Vite, TypeScript), Zustand, React Query, TailwindCSS, React DnD  
+- **Backend:** Node.js, Express.js, Prisma (MySQL), Mongoose (MongoDB)  
+- **Testing:** Vitest  
+- **API Documentation:** Swagger  
+
+---
+
+##  Getting Started  
+
+###  Clone the Repository  
+```sh
+git clone https://github.com/yourusername/task-management-frontend.git
+cd task-management-frontend

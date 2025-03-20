@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
 interface TaskProps {
@@ -12,6 +12,11 @@ interface TaskProps {
 const TaskItem: React.FC<TaskProps> = ({ task, index, moveTask, handleStatusChange, handleDeleteTask }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [selectedStatus, setSelectedStatus] = useState(task.status);
+
+  // Update state if task status changes externally
+  useEffect(() => {
+    setSelectedStatus(task.status);
+  }, [task.status]);
 
   const [, drop] = useDrop({
     accept: "TASK",

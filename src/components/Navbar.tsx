@@ -5,7 +5,7 @@ const Navbar = () => {
   const { user, logout } = useAuthStore();
 
   const handleLogout = async () => {
-    await fetch("http://localhost:5000/auth/logout", {
+    await fetch("/api/auth/logout", {
       method: "POST",
       credentials: "include", // Ensures cookies are cleared
     });
@@ -14,8 +14,13 @@ const Navbar = () => {
 
   return (
     <nav className="p-4 bg-blue-500 text-white flex justify-between">
-      <Link to="/dashboard">Dashboard</Link>
-      {user?.role === "admin" && <Link to="/admin">Admin</Link>}
+     {user?.role === 'user' && <Link to="/dashboard">Dashboard</Link>}
+     {user?.role === "admin" && (
+          <>
+            <Link to="/admin" className="px-3 py-2 bg-gray-700 rounded">Admin Dashboard</Link>
+            <Link to="/admin/reports" className="px-3 py-2 bg-gray-700 rounded">Reports</Link>
+          </>
+        )}
       <button onClick={handleLogout}>Logout</button>
     </nav>
   );
