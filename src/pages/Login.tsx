@@ -11,7 +11,7 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
