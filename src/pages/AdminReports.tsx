@@ -10,8 +10,8 @@ const AdminReports = () => {
     const fetchReports = async () => {
       try {
         const [tasksRes, usersRes] = await Promise.all([
-          fetch("/api/reports/total-tasks", { credentials: "include" }),
-          fetch("/api/reports/top-users", { credentials: "include" }),
+          fetch("import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/reports/total-tasks", { credentials: "include" }),
+          fetch("import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/reports/top-users", { credentials: "include" }),
         ]);
 
         if (!tasksRes.ok || !usersRes.ok) throw new Error("Failed to fetch reports");

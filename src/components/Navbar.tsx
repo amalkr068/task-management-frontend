@@ -5,7 +5,7 @@ const Navbar = () => {
   const { user, logout } = useAuthStore();
 
   const handleLogout = async () => {
-    await fetch("/api/auth/logout", {
+    await fetch("import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/auth/logout", {
       method: "POST",
       credentials: "include", // Ensures cookies are cleared
     });

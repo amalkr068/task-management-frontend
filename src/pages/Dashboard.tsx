@@ -15,7 +15,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("/api/tasks", { credentials: "include" });
+        const response = await fetch("import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/tasks", { credentials: "include" });
 
         if (!response.ok) throw new Error("Failed to fetch tasks");
 

@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("/api/tasks/all", {
+        const response = await fetch("import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/tasks/all", {
           credentials: "include",
         });
 
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/tasks/users", {
+        const response = await fetch("import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/tasks/users", {
           credentials: "include",
         });
 
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
 
   const handleAssignTask = async (taskId: string, userId: string) => {
     try {
-      const response = await fetch(`/api/tasks/${taskId}/assign`, {
+      const response = await fetch(`import.meta.env.VITE_REACT_APP_BACKEND_BASEURL/tasks/${taskId}/assign`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
